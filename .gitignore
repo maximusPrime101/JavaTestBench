@@ -1,0 +1,11 @@
+# Ignore Eclipse files
+/Final_Project/.settings/
+/Final_Project/.classpath
+/Final_Project/.project
+
+# Ignore Maven output
+/Final_Project/target/
+
+
+# Ignore Test Output
+/Final_Project/test-output
