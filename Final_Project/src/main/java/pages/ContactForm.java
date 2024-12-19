@@ -23,7 +23,6 @@ public class ContactForm extends Base{
     
     public void submitContactForm() throws InterruptedException {
     	click(blogLink);
-        
     	type(nameField, "John Doe");
     	type(phoneField, "0547762556");
         type(emailField, "john_doe@gmail.com");
