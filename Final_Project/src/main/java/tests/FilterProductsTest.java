@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 
 import pages.FilterProducts;
 
-import pages.ContactForm;
-
 public class FilterProductsTest {
 	private WebDriver driver;
 	private WebDriverWait wait;
