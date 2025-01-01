@@ -2,7 +2,7 @@
 /Final_Project/.settings/
 /Final_Project/.classpath
 /Final_Project/.project
-/Final_Project/Credentials/API_Key.txt
+/Final_Project/src/main/resources/credentials
 
 # Ignore Maven output
 /Final_Project/target/
