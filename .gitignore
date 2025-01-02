@@ -6,6 +6,8 @@
 # Ignore Maven output
 /Final_Project/target/
 
-
 # Ignore Test Output
 /Final_Project/test-output
+
+# Ignore TestNG Local Files
+/Final_Project/testng.xml
