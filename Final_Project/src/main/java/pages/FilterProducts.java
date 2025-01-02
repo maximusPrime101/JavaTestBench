@@ -3,6 +3,7 @@ package pages;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,10 +13,12 @@ public class FilterProducts extends Base{
 		super(driver, wait);
 	}
 	
-	//Define private selectors (By)
-	
-	public void filterProducts() {
-    	//Write test steps here
+	private By searchField = By.id("header-search-input");
+    
+	public void searchProduct(String searchInput) {
+		findElement(searchField);
+    	type(searchField, searchInput);
     }
+
 
 }
