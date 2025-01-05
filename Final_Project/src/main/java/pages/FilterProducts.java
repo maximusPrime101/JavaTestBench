@@ -20,8 +20,8 @@ public class FilterProducts extends Base{
     private By inputField = By.id("header-search-input");
     private By closePopUp = By.cssSelector(".action-close");
     private By colorSelect = By.cssSelector("[data-filter=\"color_group\"]");
-   // private By colorList = By.cssSelector("[attribute-code=\"color_group\"]");
-    private By colorList = By.cssSelector(".items.swatch-attribute.type-swatch.type-swatch-color_group li:nth-child(3)");//for debugging purposes
+    private By colorList = By.cssSelector("[attribute-code=\"color_group\"]");
+   // private By colorList = By.cssSelector(".items.swatch-attribute.type-swatch.type-swatch-color_group li:nth-child(3)");//for debugging purposes
     private By sizeSelect = By.cssSelector("[data-filter=\"size\"]");
     private By sizeList = By.cssSelector("[attribute-code=\"size\"]");
     private By sortBy = By.id("sorter");
