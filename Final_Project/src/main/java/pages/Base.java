@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -69,7 +70,7 @@ public class Base {
 	}
 	
 	public void clickElementInList(By locator, int indx) {
-		findElements(locator).get(0).click();
+		findElements(locator).get(indx).click();
 	}
 
 	public boolean isDisplayed(By locator) {
