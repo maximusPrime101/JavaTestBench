@@ -27,8 +27,10 @@ public class FilterProductsTest {
 
 	@AfterTest
 	public void endTest() throws InterruptedException {
+
 		Thread.sleep(3000);
         driver.quit();
+
 	}
 
 }
