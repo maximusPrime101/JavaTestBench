@@ -16,6 +16,7 @@ public class FilterProducts extends Base{
 		super(driver, wait);
 	}
 	
+
 	private By searchField = By.cssSelector(".mini-wrapper.mini-search >a");
     private By inputField = By.id("header-search-input");
     private By closePopUp = By.cssSelector(".action-close");
@@ -78,6 +79,14 @@ public class FilterProducts extends Base{
     	
     	resultValidation();
     	
+/*
+	private By searchButton = By.cssSelector("[class='action header-search-toggle']");
+	private By searchField = By.id("header-search-input");
+    
+	public void searchProduct(String searchInput) {
+		click(searchButton);
+    	type(searchField, searchInput + Keys.ENTER);
+*/
     }
 
     
