@@ -66,4 +66,6 @@ public class ContactUsPage extends Base{
     public String getSendSuccessMsg () {
     	return getText(sendSucessMsg);
     }
+    
+    
 }

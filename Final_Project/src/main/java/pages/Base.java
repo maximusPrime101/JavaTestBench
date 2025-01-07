@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,7 +38,7 @@ public class Base {
 		wait = new WebDriverWait(driver, Duration.ofMillis(3000));
 		return driver;
 	}
-	
+
 	public void waitUntilElementLocated(By locator) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
@@ -68,7 +67,7 @@ public class Base {
 	public void click(By locator) {
 		findElement(locator).click();
 	}
-	
+
 	public void clickElementInList(By locator, int indx) {
 		findElements(locator).get(0).click();
 	}
@@ -91,49 +90,50 @@ public class Base {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
 	}
-	
-	public void waitUntilFieldIsFilled(By locator, Duration duration){
-		WebDriverWait wait = new WebDriverWait(driver, duration); 
-		wait.until(new ExpectedCondition<Boolean>() { 
-			@Override 
-			public Boolean apply(WebDriver driver) { 
-				String value = findElement(locator).getDomProperty("value"); 
-				try { 
-					// Wait for a brief moment to ensure typing has stopped 
-					Thread.sleep(500); 
-				} catch (InterruptedException e) { 
-					e.printStackTrace(); 
-				} 
-				// Check if the value has not changed 
+
+	public void waitUntilFieldIsFilled(By locator, Duration duration) {
+		WebDriverWait wait = new WebDriverWait(driver, duration);
+		wait.until(new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				String value = findElement(locator).getDomProperty("value");
+				try {
+					// Wait for a brief moment to ensure typing has stopped
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				// Check if the value has not changed
 				return value.equals(findElement(locator).getDomProperty("value"));
 			}
 		});
 	}
-	
+
 	public void waitUntilFieldsAreFilled(List<By> fieldLocators, Duration duration) {
 		Duration durationForEachField = duration.dividedBy(fieldLocators.size());
 		for (By fieldLocator : fieldLocators) {
 			waitUntilFieldIsFilled(fieldLocator, durationForEachField);
 		}
 	}
-		
-	  public void uploadFile(String filePath) throws AWTException {
-	        // Copy the file path to the clipboard
-	        StringSelection selection = new StringSelection(filePath);
-	        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
 
-	        Robot robot = new Robot();
-	        robot.delay(1000); 
+	public void uploadFile(String filePath) throws AWTException {
+		// Copy the file path to the clipboard
+		StringSelection selection = new StringSelection(filePath);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
 
-	        // Simulate CTRL+V to paste the file path
-	        robot.keyPress(KeyEvent.VK_CONTROL);
-	        robot.keyPress(KeyEvent.VK_V);
-	        robot.keyRelease(KeyEvent.VK_V);
-	        robot.keyRelease(KeyEvent.VK_CONTROL);
+		Robot robot = new Robot();
+		robot.delay(1000);
 
-	        // Press Enter to confirm the file upload
-	        robot.delay(500);
-	        robot.keyPress(KeyEvent.VK_ENTER);
-	        robot.keyRelease(KeyEvent.VK_ENTER);
-	    }
+		// Simulate CTRL+V to paste the file path
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+
+		// Press Enter to confirm the file upload
+		robot.delay(500);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+	}
+	
 }
