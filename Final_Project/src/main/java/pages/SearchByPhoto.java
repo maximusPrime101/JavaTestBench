@@ -14,19 +14,22 @@ public class SearchByPhoto extends Base {
 
     private GeminiApiService geminiApiService;
 
-    private String promptPath = "prompts/Search_by_photo.txt";
-    private String imagePath = "images_to_upload/two-fashion-models2.png";
-    private String outputDir = "Search_by_photo";
+    //private String promptPath = "prompts/Search_by_photo_prompt.txt";
+    private String promptPath = "prompts/basic_test.txt";
+    private String imagePath = System.getProperty("user.dir") +"\\src\\main\\resources\\images_to_upload\\two-fashion-models.png";
+    private String outputFolderName = "Search_by_photo";
+    private String screenShotToApi = "screenshots/screenshot1.png";
 
+    
     public SearchByPhoto(WebDriver driver, WebDriverWait wait, GeminiApiService geminiApiService) {
         super(driver, wait);
         this.geminiApiService = geminiApiService;
     }
 
     public void enterSearchByPhoto() throws InterruptedException, IOException {
-        if (findElement(closePopUp) != null) {
-            click(closePopUp);
-        }
+//        if (findElement(closePopUp) != null) {
+//            click(closePopUp);
+//        }
 
         click(photoIcon);
         click(openGallery);
@@ -45,10 +48,10 @@ public class SearchByPhoto extends Base {
     public void callGeminiApi() {
         try {
             // Delegate the logic to the GeminiApiService
-            String response = geminiApiService.callGeminiApi(promptPath, imagePath, outputDir);
+            String response = geminiApiService.callGeminiApi(promptPath, screenShotToApi, outputFolderName);
 
             // Handle the response
-            System.out.println("SearchByPhoto\nAPI Response: " + response);
+            //System.out.println("SearchByPhoto\nAPI Response: " + response);
 
         } catch (Exception e) {
             e.printStackTrace();

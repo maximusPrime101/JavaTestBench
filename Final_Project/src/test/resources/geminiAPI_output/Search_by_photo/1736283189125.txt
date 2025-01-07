@@ -1,0 +1,5 @@
+This is a screenshot of an online clothing store webpage. <br>
+It shows several long-sleeved shirts for women, displayed in individual images with prices and descriptions. <br>
+A section labelled "MOST SIMILAR" suggests that these items are related. <br>
+There's also a smaller image on the right, showing a different style of women's clothing, perhaps suggesting a style category or a lookbook. <br>
+The text is primarily in Hebrew, indicating the store's likely location or target audience. <br>

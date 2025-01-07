@@ -38,9 +38,7 @@ public class GeminiApiClient {
         }
     }   
     
-    
-    
-    public String generateContent(String prompt, String imageBase64) throws Exception {
+    public String generateContent(String prompt, String imageBase64) throws IOException, RuntimeException  {
         
 
         String apiUrl = readFromFile(API_URL_FILE);
@@ -57,13 +55,18 @@ public class GeminiApiClient {
                 .build();
 
         HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() == 200) {
-            return response.body();
-        } else {
-            throw new RuntimeException("Request failed with status code: " + response.statusCode() + " and body: " + response.body());
-        }
+        try {
+	        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+	
+	        if (response.statusCode() == 200) {
+	            return response.body();
+	        } else {
+	        	throw new RuntimeException("Request failed with status code: " + response.statusCode() + " and body: " + response.body());
+	        }
+	        }catch (InterruptedException e) {
+	            Thread.currentThread().interrupt(); // Re-interrupt the thread
+	            throw new RuntimeException("Request was interrupted", e);
+	        }
     }
 
     public String readFromFile(String filePath) throws IOException {
@@ -94,8 +97,8 @@ public class GeminiApiClient {
         Path outputPath = outputDirPath.resolve(System.currentTimeMillis() + ".txt");
         Files.write(outputPath, textContent.getBytes(StandardCharsets.UTF_8));
 
-        System.out.println("Response saved to: " + outputPath);
-    
+      //  System.out.println("Response saved to: " + outputPath);
+        System.out.println("\nAI Response:\n" + textContent + "\n\n");
     }
 
     public static String encodeImageToBase64(String imagePath) {

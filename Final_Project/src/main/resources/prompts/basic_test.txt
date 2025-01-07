@@ -1,0 +1,3 @@
+brief explanation about the image
+
+Use a line break (<br>) after every dot (.)
