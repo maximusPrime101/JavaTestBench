@@ -1,0 +1,11 @@
+This is a screenshot of an online clothing store's webpage.<br>
+
+It showcases several long-sleeved shirts for women, in various colors and stripes.<br>
+
+The prices and availability are also displayed.<br>
+
+A section on the right shows similar items, possibly based on a customer's previous search or selection.<br>
+
+The text is partially in Hebrew.<br>
+
+There are filters for gender, size, color and price on the right side.<br>

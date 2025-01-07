@@ -24,15 +24,6 @@ public class Base {
 	private WebDriver driver;
 	private WebDriverWait wait;
 
-	// API Variables
-
-//	private String credentialsPath = "resources/credentials/API_Key.json";
-	// private String credentialsPath = "API_Key.json";
-	// private String projectIdPath = "credentials/Project_ID.txt";
-	// private String outputPath = "gemini_output/";
-	// private String promptPath = "prompts/Search_by_photo.txt";
-	// private String imagePath = "screenshot1.png";
-
 	public Base(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		this.wait = wait;

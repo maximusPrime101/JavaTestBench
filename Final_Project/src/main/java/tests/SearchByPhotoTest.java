@@ -26,13 +26,13 @@ public class SearchByPhotoTest {
         geminiApiService = new GeminiApiService(geminiApiClient);
 		searchByPhoto = new SearchByPhoto(driver, wait, geminiApiService);
 		driver = searchByPhoto.chromeDriverConnection();
-		searchByPhoto.visit("https://www.hoodies.co.il/");
+	//	searchByPhoto.visit("https://www.hoodies.co.il/");
 	}
 	
 	@Test
 	public void searchTest() throws InterruptedException,AWTException,IOException {
 
-		searchByPhoto.enterSearchByPhoto();
+	//	searchByPhoto.enterSearchByPhoto();
 		searchByPhoto.callGeminiApi();
 		
 		
