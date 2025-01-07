@@ -56,7 +56,7 @@ public class NetworkInterceptor {
 			});
 		
 		//Allow the listener time to get the Request
-		Thread.sleep(5000);
+		Thread.sleep(4000);
 
 		} catch (Exception e) {
 			closeDevToolsSession();
@@ -77,7 +77,7 @@ public class NetworkInterceptor {
 				}
 			});
 
-			Thread.sleep(5000);
+			Thread.sleep(6000);
 
 		} catch (Exception e) {
 			closeDevToolsSession();
