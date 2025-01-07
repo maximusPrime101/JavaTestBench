@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,7 +38,7 @@ public class Base {
 		wait = new WebDriverWait(driver, Duration.ofMillis(3000));
 		return driver;
 	}
-	
+
 	public void waitUntilElementLocated(By locator) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
