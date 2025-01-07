@@ -55,31 +55,43 @@ public class ContactUsPageTest {
 		contactUsPage.fillAllFormFields(contactFormData);
 		System.out.println("Filling contact form fields with input: " + contactFormData);
 
+		
+		//Intercept logic:
+				// Create DevTools session
+				DevTools devTools = ((ChromeDriver) driver).getDevTools();
+				devTools.createSession();
+				devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+
+				final String REQUEST_URL = "https://www.hoodies.co.il/forms/index/index/";
+
+				// TODO: intercept request
+				// Listener to capture request events
+				
+				devTools.addListener(Network.requestWillBeSent(), requestSent -> {
+					Request request = requestSent.getRequest();
+					if (request.getUrl().equals(REQUEST_URL)) {
+						System.out.println("Request URL: " + request.getUrl());
+						System.out.println("Request Method: " + request.getMethod());
+						System.out.println("Request Headers: " + request.getHeaders());
+						if (request.getPostData().isPresent()) {
+							System.out.println("Request Post Data: " + request.getPostData().get());
+						}
+					}
+				});
+				
+				devTools.close();
+		
+		
 		contactUsPage.clickSend();
-		System.out.println("Sending contact us form");
+		System.out.println("Sending Contact Us form");
 		
-	//Intercept logic:
+	
+		
 		// Create DevTools session
-		DevTools devTools = ((ChromeDriver) driver).getDevTools();
-		devTools.createSession();
-		devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-
-		final String REQUEST_URL = "https://www.hoodies.co.il/forms/index/index/";
-
-		// TODO: intercept request
-		// Listener to capture request events
-		devTools.addListener(Network.requestWillBeSent(), requestSent -> {
-			Request request = requestSent.getRequest();
-			if (request.getUrl().equals(REQUEST_URL)) {
-				System.out.println("Request URL: " + request.getUrl());
-				System.out.println("Request Method: " + request.getMethod());
-				System.out.println("Request Headers: " + request.getHeaders());
-				if (request.getPostData().isPresent()) {
-					System.out.println("Request Post Data: " + request.getPostData().get());
-				}
-			}
-		});
-		
+				devTools = ((ChromeDriver) driver).getDevTools();
+				devTools.createSession();
+				devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+				
 		// TODO: intercept response and check status code is 200
 		// Check the response code
 				devTools.addListener(Network.responseReceived(), responseReceived -> {
@@ -106,6 +118,9 @@ public class ContactUsPageTest {
 		// Clean up
 		devTools.close();
 	//end intercept logic
+		
+		
+		
 
 		Assert.assertEquals(contactUsPage.getSendSuccessMsg(), PageConstants.SUCCESS_MSG_CONTACT_FORM_SUBMIT,
 				"Form submit success message is incorrect.");
