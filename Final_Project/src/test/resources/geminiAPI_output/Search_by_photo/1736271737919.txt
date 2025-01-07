@@ -1,0 +1,5 @@
+This is an e-commerce website page showing women's long-sleeved shirts.<br>
+The page displays several similar items, including different colors and styles of striped shirts and solid-color V-neck shirts.<br>
+There is a section on the right side showing similar items based on an image of two models wearing different outfits.<br>
+The prices and discounts are also displayed for each item.<br>
+The text is in Hebrew.

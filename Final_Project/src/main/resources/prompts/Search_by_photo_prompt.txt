@@ -1,0 +1,22 @@
+
+Analyze the provided screenshot of an e-commerce site's "uploaded image search tool".
+Regarding the uploaded image on the top-right, identify the following:
+
+1. Clothing Detection: Is a clothing item detected and framed in the uploaded image?
+2. Item Count: How many clothing items are framed in the uploaded image (if any)?
+3. Clothing Type: What type of clothing is framed in the uploaded image (e.g., shirt, pants, dress, etc.)?
+4. Dominant Color(s): What are the dominant color(s) of the clothing in the framed area?
+5. Patterns: Is there a visible pattern on the clothing? If so, describe the pattern (e.g., stripes, plaid, floral).
+6. Gender: Is the clothing presented as designed for a particular gender? If so, what gender?
+
+Regarding the search results on the left side of the screenshot:
+
+1.  Match: Based on the above analysis of the framed item in the uploaded image, 
+	does any of the clothing items displayed as search results on the left side match? if yes, then on which points
+
+Note: Focus on objectively observable visual details within the image. Avoid assumptions or subjective interpretations 
+of the people or clothing (such as style, social class, or emotion).
+
+
+
+

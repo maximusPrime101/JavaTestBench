@@ -1,0 +1,5 @@
+This is a screenshot of an online clothing store's webpage.<br>
+It shows a selection of women's long-sleeved shirts in various colors and stripes.<br>
+There is also a section labeled "MOST SIMILAR" displaying other items and a filter section on the right.<br>
+The text is in Hebrew and shows prices and discounts.<br>
+The page seems to be offering recommendations for similar clothing items based on a user's selection.

@@ -1,0 +1,1 @@
+This is an online clothing store webpage showing a selection of women's long-sleeved shirts.  The main part displays various shirts in different colors and stripes, with prices and sale information.  A side panel shows similar items, and a section displaying  filter options (gender, size, color, and price) in Hebrew.
