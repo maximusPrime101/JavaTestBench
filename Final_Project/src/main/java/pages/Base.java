@@ -38,7 +38,7 @@ public class Base {
 		wait = new WebDriverWait(driver, Duration.ofMillis(3000));
 		return driver;
 	}
-
+	
 	public void waitUntilElementLocated(By locator) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}

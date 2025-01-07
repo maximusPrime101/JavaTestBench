@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import testdata.ContactFormData;
+
 public class ContactUsPage extends Base{
 
 	public ContactUsPage(WebDriver driver, WebDriverWait wait) {
@@ -52,22 +54,16 @@ public class ContactUsPage extends Base{
     	click(sendButton);
     }
     
+    public void fillAllFormFields(ContactFormData formInput) {
+    	//TODO: validate formInput and its fields are not null
+    	fillFirstName(formInput.getFirstName());
+    	fillLastName(formInput.getLastName());
+    	fillEmail(formInput.getEmail());
+    	fillPhone(formInput.getPhone());
+    	fillMessage(formInput.getMessage());
+    }
+    
     public String getSendSuccessMsg () {
     	return getText(sendSucessMsg);
     }
-    
-    /*
-    public void submitContactForm() {
-    	click(contactUsLink);
-    	Assert.assertEquals(getText(pageTitle), "יצירת קשר");
-    	type(firstNameField, "John");
-    	type(lastNameField, "Doe");
-    	type(emailField, "john_doe@gmail.com");
-    	type(phoneField, "0547762556");
-        type(messageField, "Hello, this is a test. Thank you!");
-        click(sendButton);
-        Assert.assertEquals(getText(sendSucessMsg), "הפרטים נשלחו בהצלחה");
-    }
-    */
-
 }
