@@ -20,11 +20,11 @@ public class FilterProducts extends Base{
 	private By searchField = By.cssSelector(".mini-wrapper.mini-search >a");
     private By inputField = By.id("header-search-input");
     private By closePopUp = By.cssSelector(".action-close");
-    private By colorSelect = By.cssSelector("[data-filter=\"color_group\"]");
-    private By colorList = By.cssSelector("[attribute-code=\"color_group\"]");
-   // private By colorList = By.cssSelector(".items.swatch-attribute.type-swatch.type-swatch-color_group li:nth-child(3)");//for debugging purposes
-    private By sizeSelect = By.cssSelector("[data-filter=\"size\"]");
-    private By sizeList = By.cssSelector("[attribute-code=\"size\"]");
+    private By colorSelect = By.cssSelector("[data-filter=\"color_group\"]>div:first-child");
+//    private By colorList = By.cssSelector("[attribute-code=\"color_group\"]");
+    private By colorList = By.cssSelector(".items.swatch-attribute.type-swatch.type-swatch-color_group li");//for debugging purposes
+    private By sizeSelect = By.cssSelector("[data-filter=\"size\"]>div:first-child");
+    private By sizeList = By.cssSelector("[data-filter=\"size\"]>div:nth-child(2) li");
     private By sortBy = By.id("sorter");
     private By searchResultList = By.cssSelector(".products_container>div ul");
     private By resultItemName = By.cssSelector("[.products_container>div ul h3]");//12 results -title
@@ -40,37 +40,53 @@ public class FilterProducts extends Base{
 		click(searchField);
     	type(inputField, searchInput).sendKeys(Keys.ENTER);
     	
-//    	//close popup
-//    	if (findElement(closePopUp) != null) {
+    	//close popup
+//    	if (isDisplayed(closePopUp)) {
 //    		click(closePopUp);
 //    	}
 //    
     	//select color filter
     	waitUntilElementLocated(colorSelect);
     	findElement(colorSelect);
-    	click(colorSelect);
+    	if (isDisplayed(colorSelect)) {
+    		click(colorSelect);
+    	}
     	
+    	System.out.println("1================================");
     	System.out.println("Color is: \n"+getText(colorSelect));
-    	System.out.println("================================");
-    	System.out.println(getText(colorList));
+    	
+//    	System.out.println(getText(colorList));
     	
     	waitUntilElementLocated(colorList);
-    	click(colorList);
-    	//clickElementInList(colorList, 4); //Black color
-    	//clickElementInList(colorSelect, 4); //Black color
+    	if (isDisplayed(colorList)) {
+    		
+    		clickElementInList(colorList, 3); //Black color
+    		System.out.println("\n Success Mirit is displayed colorlist\n");
+    	}
+    	
+    	
+    	
     	
     	//select size filter
     	waitUntilElementLocated(sizeSelect);
-    //	findElement(sizeSelect);
+    	findElement(sizeSelect);
+    	if (isDisplayed(sizeSelect)) {
+    		click(sizeSelect);
+    		System.out.println("\n Success is displayed sizeSelect\n");
+    	}
     	
     	System.out.println("Size is: \n"+getText(sizeSelect));
-    	System.out.println("================================");
-    	System.out.println(getText(sizeList));
+    	System.out.println("2================================\n");
     	
-    	click(sizeSelect);
-    	waitUntilElementLocated(sizeList);
-    	System.out.println(getText(sizeList));
-    	clickElementInList(sizeList, 2); //Small size
+    	
+    	
+    	waitUntilElementLocated(sizeList);	
+    	if(isDisplayed(sizeList)){
+    		System.out.print("size: "+getText(sizeList));
+    		clickElementInList(sizeList, 2); //Small size
+    	}
+    	
+    	System.out.println(getText(sizeList)+"***********");
     	
     	//sort by name
     	waitUntilElementLocated(sortBy);
