@@ -70,7 +70,7 @@ public class Base {
 	}
 	
 	public void clickElementInList(By locator, int indx) {
-		findElements(locator).get(0).click();
+		findElements(locator).get(indx).click();
 	}
 
 	public boolean isDisplayed(By locator) {
