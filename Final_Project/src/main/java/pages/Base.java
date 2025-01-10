@@ -135,5 +135,11 @@ public class Base {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 	}
+	
+	public void closePopUp(By locator) {
+		if (isDisplayed(locator)) {
+    		click(locator);
+    	}
+	}
 
 }

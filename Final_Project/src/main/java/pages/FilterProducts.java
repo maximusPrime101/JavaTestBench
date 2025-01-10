@@ -1,10 +1,5 @@
 package pages;
 
-import java.lang.reflect.Array;
-import java.time.Duration;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap.KeySetView;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -15,36 +10,27 @@ public class FilterProducts extends Base{
 	public FilterProducts(WebDriver driver, WebDriverWait wait) {
 		super(driver, wait);
 	}
-	
 
 	private By searchField = By.cssSelector(".mini-wrapper.mini-search >a");
     private By inputField = By.id("header-search-input");
-    private By closePopUp = By.cssSelector(".action-close");
+    private By closePopUpButton = By.cssSelector(".action-close");
     private By colorSelect = By.cssSelector("[data-filter=\"color_group\"]>div:first-child");
-//    private By colorList = By.cssSelector("[attribute-code=\"color_group\"]");
-    private By colorList = By.cssSelector(".items.swatch-attribute.type-swatch.type-swatch-color_group li");//for debugging purposes
+    private By colorList = By.cssSelector(".items.swatch-attribute.type-swatch.type-swatch-color_group li");
     private By sizeSelect = By.cssSelector("[data-filter=\"size\"]>div:first-child");
     private By sizeList = By.cssSelector("[data-filter=\"size\"]>div:nth-child(2) li");
     private By sortBy = By.id("sorter");
     private By searchResultList = By.cssSelector(".products_container>div ul");
-    private By resultItemName = By.cssSelector("[.products_container>div ul h3]");//12 results -title
-    private By resultItemImage = By.cssSelector("[.products_container>div ul img]");//99 results -image
-    
-    
-    
-    
+    private By resultItemName = By.cssSelector("[.products_container>div ul h3]");
+    private By resultItemImage = By.cssSelector("[.products_container>div ul img]");
     
     public void searchProduct(String searchInput) {
 	    //search icon
     	findElement(searchField);
 		click(searchField);
     	type(inputField, searchInput).sendKeys(Keys.ENTER);
-    	
-    	//close popup
-//    	if (isDisplayed(closePopUp)) {
-//    		click(closePopUp);
-//    	}
-//    
+    }
+    
+    public void filterByColor() {
     	//select color filter
     	waitUntilElementLocated(colorSelect);
     	findElement(colorSelect);
@@ -63,9 +49,6 @@ public class FilterProducts extends Base{
     		clickElementInList(colorList, 3); //Black color
     		System.out.println("\n Success Mirit is displayed colorlist\n");
     	}
-    	
-    	
-    	
     	
     	//select size filter
     	waitUntilElementLocated(sizeSelect);

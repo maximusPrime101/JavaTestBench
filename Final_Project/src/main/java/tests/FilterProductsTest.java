@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -27,7 +26,6 @@ public class FilterProductsTest {
 
 	@AfterTest
 	public void endTest() throws InterruptedException {
-
 		Thread.sleep(3000);
      //   driver.quit();
 
