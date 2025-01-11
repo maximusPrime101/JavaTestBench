@@ -77,7 +77,7 @@ public class NetworkInterceptor {
 				}
 			});
 
-			Thread.sleep(6000);
+			Thread.sleep(4000);
 
 		} catch (Exception e) {
 			closeDevToolsSession();
