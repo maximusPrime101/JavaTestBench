@@ -67,6 +67,10 @@ public class Base {
 	public void click(By locator) {
 		findElement(locator).click();
 	}
+	
+	public void click(WebElement element) {
+		element.click();
+	}
 
 	public void clickElementInList(By locator, int indx) {
 		findElements(locator).get(indx).click();
@@ -114,6 +118,17 @@ public class Base {
 		for (By fieldLocator : fieldLocators) {
 			waitUntilFieldIsFilled(fieldLocator, durationForEachField);
 		}
+	}
+	
+	public void waitUntilAttributeValueChange(By locator, String attribute,String initialValue, Duration duration) {
+		WebDriverWait wait = new WebDriverWait(driver, duration);
+		wait.until(new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				String updatedAttributeValue = findElement(locator).getDomAttribute(attribute);
+				return updatedAttributeValue != null && !updatedAttributeValue.equals(initialValue);
+			}
+		});
 	}
 
 	public void uploadFile(String filePath) throws AWTException {

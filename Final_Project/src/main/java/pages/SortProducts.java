@@ -5,15 +5,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FilterProducts extends Base{
+public class SortProducts extends Base{
 
-	public FilterProducts(WebDriver driver, WebDriverWait wait) {
+	public SortProducts(WebDriver driver, WebDriverWait wait) {
 		super(driver, wait);
 	}
 
-	private By searchField = By.cssSelector(".mini-wrapper.mini-search >a");
-    private By inputField = By.id("header-search-input");
-    private By closePopUpButton = By.cssSelector(".action-close");
     private By colorSelect = By.cssSelector("[data-filter=\"color_group\"]>div:first-child");
     private By colorList = By.cssSelector(".items.swatch-attribute.type-swatch.type-swatch-color_group li");
     private By sizeSelect = By.cssSelector("[data-filter=\"size\"]>div:first-child");
@@ -22,13 +19,6 @@ public class FilterProducts extends Base{
     private By searchResultList = By.cssSelector(".products_container>div ul");
     private By resultItemName = By.cssSelector("[.products_container>div ul h3]");
     private By resultItemImage = By.cssSelector("[.products_container>div ul img]");
-    
-    public void searchProduct(String searchInput) {
-	    //search icon
-    	findElement(searchField);
-		click(searchField);
-    	type(inputField, searchInput).sendKeys(Keys.ENTER);
-    }
     
     public void filterByColor() {
     	//select color filter
