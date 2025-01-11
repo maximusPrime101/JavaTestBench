@@ -22,26 +22,25 @@ public class OrderProductsTest {
 	private ProductPage productPage;
 
 	@BeforeTest
-	public void setup() throws InterruptedException {
+	public void setup() {
 		checkoutPage = new CheckoutPage(driver, wait);
 		driver = checkoutPage.chromeDriverConnection();
 		navigationBar = new NavigationBar(driver, wait);
 		checkoutPage.visit("https://www.hoodies.co.il/");
 	}
-	
-	private void openWomenClothesPage() {
+
+	private void initWomenClothesPage() {
 		navigationBar.enterWomenCategory();
 		womenClothesPage = new WomenClothesPage(driver, wait);
 	}
-	
+
 	private void initProductPage() {
 		productPage = new ProductPage(driver, wait);
 	}
-	
-	
+
 	@Test
-	public void testGuestOrderProduct_InvalidPaymentData_TransactionFail() throws InterruptedException {
-		openWomenClothesPage();
+	public void testGuestOrderProduct_UntilPayPal() {
+		initWomenClothesPage();
 		womenClothesPage.selectHoodiesCategory();
 		womenClothesPage.clickProductFromList(1);
 		initProductPage();
@@ -53,10 +52,17 @@ public class OrderProductsTest {
 		navigationBar.openMiniShoppingCart();
 		navigationBar.proceedToCheckout();
 		checkoutPage.continueAsGuest();
+		checkoutPage.selectDeliveryToAddress();
+		checkoutPage.nextStepAfterShippingMethod();
+		checkoutPage.fillAddressDetails("John", "Doe", "john_doe@gmail.com", "0527856448", "נתיבות", "הרצל", "10", "1",
+				"Call before delivery");
+		checkoutPage.selectAgreeToTermsAndConditions();
+		checkoutPage.nextStepAfterShippingInfo();
+		checkoutPage.selectPayWithPayPal();
 	}
-	
+
 	@AfterTest
 	public void endTest() {
-		//driver.quit();
+		// driver.quit();
 	}
 }

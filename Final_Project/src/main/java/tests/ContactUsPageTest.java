@@ -19,8 +19,7 @@ public class ContactUsPageTest {
 	private ContactUsPage contactUsPage;
 
 	@BeforeTest
-	public void setup() throws InterruptedException {
-		// TODO: add logging
+	public void setup() {
 		contactUsPage = new ContactUsPage(driver, wait);
 		driver = contactUsPage.chromeDriverConnection();
 		contactUsPage.visit("https://www.hoodies.co.il/");
@@ -35,8 +34,6 @@ public class ContactUsPageTest {
 	 */
 	@Test
 	public void testContactUsFormSubmit_ValidData_Succees() {
-		// TODO: get inputs from excel
-		// TODO: add logging
 		final String testName = "testContactUsFormSubmit_ValidData_Success";
 		System.out.println(testName + " test start");
 
@@ -74,7 +71,7 @@ public class ContactUsPageTest {
 	}
 
 	@AfterTest
-	public void endTest() throws InterruptedException {
+	public void endTest() {
 		driver.quit();
 	}
 }

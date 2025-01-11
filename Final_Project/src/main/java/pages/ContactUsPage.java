@@ -55,7 +55,6 @@ public class ContactUsPage extends Base{
     }
     
     public void fillAllFormFields(ContactFormData formInput) {
-    	//TODO: validate formInput and its fields are not null
     	fillFirstName(formInput.getFirstName());
     	fillLastName(formInput.getLastName());
     	fillEmail(formInput.getEmail());

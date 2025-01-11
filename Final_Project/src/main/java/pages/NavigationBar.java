@@ -34,11 +34,11 @@ public class NavigationBar extends Base{
     }
     
     public void enterWomenCategory() {
+		waitUntilElementInteractable(womenClothesLink);
     	click(womenClothesLink);
     }
     
     public void waitForCartUpdate() {
     	waitUntilAttributeValueChange(shoppingCartCounter, "data-count", "0", Duration.ofSeconds(3));
     }
-    
 }

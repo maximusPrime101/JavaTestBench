@@ -15,7 +15,7 @@ public class SortProductsTest {
 	private NavigationBar navigationBar;
 
 	@BeforeTest
-	public void setup() throws InterruptedException {
+	public void setup() {
 		filterProducts = new SortProducts(driver, wait);
 		navigationBar =  new NavigationBar(driver, wait);
 		driver = filterProducts.chromeDriverConnection();
@@ -23,15 +23,13 @@ public class SortProductsTest {
 	}
 
 	@Test
-	public void filterProductsTest() throws InterruptedException {
+	public void filterProductsTest() {
 		navigationBar.searchProduct("shirt");
 	}
 
 	@AfterTest
-	public void endTest() throws InterruptedException {
-		Thread.sleep(3000);
-     //   driver.quit();
-
+	public void endTest() {
+		driver.quit();
 	}
 
 }

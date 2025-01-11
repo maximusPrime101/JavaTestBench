@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,7 +41,13 @@ public class Base {
 	}
 
 	public void waitUntilElementLocated(By locator) {
+		wait = new WebDriverWait(driver, Duration.ofMillis(3000));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+
+	public void waitUntilElementInteractable(By locator) {
+		wait = new WebDriverWait(driver, Duration.ofMillis(4000));
+		wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
 	public WebElement findElement(By locator) {
@@ -64,10 +71,14 @@ public class Base {
 		return findElement(locator);
 	}
 
+	public WebElement typeAndMoveToNextField(By locator, String inputText) {
+		return type(locator, inputText + Keys.TAB);
+	}
+
 	public void click(By locator) {
 		findElement(locator).click();
 	}
-	
+
 	public void click(WebElement element) {
 		element.click();
 	}
@@ -87,6 +98,16 @@ public class Base {
 	public void selectFromDropDownListByValue(By locator, String value) {
 		Select select = new Select(findElement(locator));
 		select.selectByValue(value);
+	}
+
+	public void selectFromListByOptionIndex(By locator, int index) {
+		Select select = new Select(findElement(locator));
+		List<WebElement> options = select.getOptions();
+		try {
+			options.get(index).click();
+		} catch (Exception e) {
+			throw new RuntimeException("No option found in select with index " + index);
+		}
 	}
 
 	public void visit(String url) {
@@ -119,8 +140,8 @@ public class Base {
 			waitUntilFieldIsFilled(fieldLocator, durationForEachField);
 		}
 	}
-	
-	public void waitUntilAttributeValueChange(By locator, String attribute,String initialValue, Duration duration) {
+
+	public void waitUntilAttributeValueChange(By locator, String attribute, String initialValue, Duration duration) {
 		WebDriverWait wait = new WebDriverWait(driver, duration);
 		wait.until(new ExpectedCondition<Boolean>() {
 			@Override
@@ -150,11 +171,19 @@ public class Base {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 	}
-	
+
 	public void closePopUp(By locator) {
 		if (isDisplayed(locator)) {
-    		click(locator);
-    	}
+			click(locator);
+		}
+	}
+	
+	public void waitForDuration(Duration duration) {
+		try {
+			Thread.sleep(duration);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
