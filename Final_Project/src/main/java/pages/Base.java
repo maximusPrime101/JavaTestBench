@@ -151,6 +151,11 @@ public class Base {
 			}
 		});
 	}
+	
+	public void waitUntilPageUrlContainsText(String text) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); 
+		wait.until(ExpectedConditions.urlContains(text));
+	}
 
 	public void uploadFile(String filePath) throws AWTException {
 		// Copy the file path to the clipboard
