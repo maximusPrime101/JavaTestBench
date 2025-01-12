@@ -1,5 +1,7 @@
 package tests;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -63,6 +65,7 @@ public class OrderProductsTest {
 
 	@AfterTest
 	public void endTest() {
-		// driver.quit();
+		checkoutPage.waitForDuration(Duration.ofSeconds(8));
+		driver.quit();
 	}
 }

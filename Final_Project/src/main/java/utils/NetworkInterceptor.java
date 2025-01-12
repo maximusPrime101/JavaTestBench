@@ -12,11 +12,11 @@ public class NetworkInterceptor {
 	private DevTools devTools;
 	private Request request;
 	private Response response;
-	
+
 	private NetworkInterceptor(DevTools devTools) {
 		this.devTools = devTools;
 	}
-	
+
 	public static NetworkInterceptor initNetworkInterceptor(ChromeDriver driver) {
 		NetworkInterceptor networkInterceptor = new NetworkInterceptor(driver.getDevTools());
 		networkInterceptor.devTools.createSession();
@@ -29,7 +29,7 @@ public class NetworkInterceptor {
 			devTools.close();
 		}
 	}
-	
+
 	public Request getRequest() {
 		return request;
 	}
@@ -37,9 +37,8 @@ public class NetworkInterceptor {
 	public Response getResponse() {
 		return response;
 	}
-	
-	public void interceptHttpRequestForUrl(String requestUrl) {
-		// TODO: add retry with a max duration
+
+	public void interceptRequestForUrl(String requestUrl) {
 		try {
 			// Listener to capture request events:
 			devTools.addListener(Network.requestWillBeSent(), requestSent -> {
@@ -54,18 +53,14 @@ public class NetworkInterceptor {
 					}
 				}
 			});
-		
-		//Allow the listener time to get the Request
-		Thread.sleep(4000);
-
+			Thread.sleep(4000);
 		} catch (Exception e) {
 			closeDevToolsSession();
 			throw new RuntimeException("Failed listening to network requests");
 		}
 	}
 
-	public void interceptHttpResponseForUrl(String requestUrl) {
-		//TODO: add retry with max duration
+	public void interceptResponseForUrl(String requestUrl) {
 		try {
 			// Listener to capture response events:
 			devTools.addListener(Network.responseReceived(), responseReceived -> {
@@ -76,9 +71,7 @@ public class NetworkInterceptor {
 					System.out.println("Response Status: " + this.response.getStatus());
 				}
 			});
-
 			Thread.sleep(4000);
-
 		} catch (Exception e) {
 			closeDevToolsSession();
 			throw new RuntimeException("Failed listening to network requests");

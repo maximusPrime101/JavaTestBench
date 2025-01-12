@@ -46,15 +46,14 @@ public class ContactUsPageTest {
 		contactUsPage.fillAllFormFields(contactFormData);
 		System.out.println("Filling contact form fields with input: " + contactFormData);
 
-		NetworkInterceptor networkInterceptor = NetworkInterceptor.initNetworkInterceptor((ChromeDriver) driver);
 		String requiredRequestUrl = PageConstants.CONTACT_FORM_SUBMIT_REQUEST_URL;
-		networkInterceptor.interceptHttpRequestForUrl(requiredRequestUrl);
+		NetworkInterceptor networkInterceptor = NetworkInterceptor.initNetworkInterceptor((ChromeDriver) driver);
+		networkInterceptor.interceptRequestForUrl(requiredRequestUrl);
 		
 		contactUsPage.clickSend();
 		System.out.println("Sending Contact Us form");
 
-		networkInterceptor.interceptHttpResponseForUrl(requiredRequestUrl);
-		
+		networkInterceptor.interceptResponseForUrl(requiredRequestUrl);
 		networkInterceptor.closeDevToolsSession();
 		
 		int responseStatus = networkInterceptor.getResponse().getStatus();
