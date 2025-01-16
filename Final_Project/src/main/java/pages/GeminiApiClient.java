@@ -38,13 +38,13 @@ public class GeminiApiClient {
         }
     }   
     
-    public String generateContent(String prompt, String imageBase64) throws IOException, RuntimeException  {
-        
+    
+    
+    public String generateContent(String prompt, String imageBase64) throws Exception {
 
         String apiUrl = readFromFile(API_URL_FILE);
         String apiKey = readFromFile(API_KEY_FILE);
         String jsonFormat = readFromFile(JSON_PAYLOAD_FILE);	
-       
         String jsonPayload = jsonFormat.formatted(prompt, imageBase64);
         
         
@@ -55,18 +55,14 @@ public class GeminiApiClient {
                 .build();
 
         HttpClient client = HttpClient.newHttpClient();
-        try {
-	        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-	
-	        if (response.statusCode() == 200) {
-	            return response.body();
-	        } else {
-	        	throw new RuntimeException("Request failed with status code: " + response.statusCode() + " and body: " + response.body());
-	        }
-	        }catch (InterruptedException e) {
-	            Thread.currentThread().interrupt(); // Re-interrupt the thread
-	            throw new RuntimeException("Request was interrupted", e);
-	        }
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		System.out.println("response: \n"+ response.body());
+
+        if (response.statusCode() == 200) {
+            return response.body();
+        } else {
+            throw new RuntimeException("Request failed with status code: " + response.statusCode() + " and body: " + response.body());
+        }
     }
 
     public String readFromFile(String filePath) throws IOException {
@@ -96,9 +92,7 @@ public class GeminiApiClient {
         // Create a unique file inside the folder
         Path outputPath = outputDirPath.resolve(System.currentTimeMillis() + ".txt");
         Files.write(outputPath, textContent.getBytes(StandardCharsets.UTF_8));
-
-      //  System.out.println("Response saved to: " + outputPath);
-        System.out.println("\nAI Response:\n" + textContent + "\n\n");
+    
     }
 
     public static String encodeImageToBase64(String imagePath) {

@@ -14,8 +14,8 @@ public class SearchByPhoto extends Base {
 
     private GeminiApiService geminiApiService;
 
-    //private String promptPath = "prompts/Search_by_photo_prompt.txt";
-    private String promptPath = "prompts/basic_test.txt";
+    private String promptPath = "prompts/Search_by_photo_prompt.txt";
+  //  private String promptPath = "prompts/basic_test.txt";
     private String imagePath = System.getProperty("user.dir") +"\\src\\main\\resources\\images_to_upload\\two-fashion-models.png";
     private String outputFolderName = "Search_by_photo";
     private String screenShotToApi = "screenshots/screenshot1.png";
@@ -27,9 +27,9 @@ public class SearchByPhoto extends Base {
     }
 
     public void enterSearchByPhoto() throws InterruptedException, IOException {
-//        if (findElement(closePopUp) != null) {
-//            click(closePopUp);
-//        }
+        if (isDisplayed(closePopUp)) {
+            click(closePopUp);
+        }
 
         click(photoIcon);
         click(openGallery);
